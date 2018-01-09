@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import { getCoins } from "../services/shapeshift";
 import { addCoin } from "../services/coins";
 import "./CoinAdd.css";
 
@@ -11,14 +12,24 @@ class CoinAdd extends React.Component {
 
     this.state = {
       amount: "",
+      coin: null
     };
   }
 
-  handleSave () {
+  componentDidMount () {
     const { symbol } = this.props.match.params;
-    const { amount } = this.state;
 
-    addCoin(symbol, amount);
+    getCoins().then((res) => {
+      this.setState({
+        coin: Object.values(res).find(r => r.symbol === symbol)
+      });
+    });
+  }
+
+  handleSave () {
+    const { coin, amount } = this.state;
+
+    addCoin(coin, amount);
     this.props.history.push("/");
   }
 
@@ -30,8 +41,12 @@ class CoinAdd extends React.Component {
 
   render () {
     const { symbol } = this.props.match.params;
-    const { amount } = this.state;
+    const { amount, coin } = this.state;
     const placeholder = `Total ${symbol} to add`;
+
+    if (!coin) {
+      return <h3>Loading...</h3>;
+    }
 
     return (
       <div className="CoinAdd container">

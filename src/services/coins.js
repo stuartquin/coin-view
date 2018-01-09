@@ -2,13 +2,22 @@ const getCoins = () => {
   return JSON.parse(localStorage.getItem("coins") || "[]");
 };
 
-const addCoin = (symbol, amount) => {
-  const coin = { symbol, amount };
+const serializeCoin = (coin, amount) => {
+  return {
+    amount,
+    name: coin.name,
+    symbol: coin.symbol,
+    image: coin.image,
+  };
+};
+
+const addCoin = (coin, amount) => {
+  const serialized = serializeCoin(coin, amount);
   const coins = getCoins();
-  const isExisting = coins.filter(c => c.symbol === symbol).length > 0;
+  const isExisting = coins.filter(c => c.symbol === coin.symbol).length > 0;
   const updated = isExisting ?
-    coins.map(c => c.symbol === symbol ? coin : c) :
-    coins.concat([coin]);
+    coins.map(c => c.symbol === coin.symbol ? serialized : c) :
+    coins.concat([serialized]);
 
   localStorage.setItem("coins", JSON.stringify(updated));
 };

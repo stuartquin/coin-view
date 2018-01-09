@@ -8,18 +8,14 @@ import {
 import "./App.css";
 import CoinSearch from "./CoinSearch";
 import CoinAdd from "./CoinAdd";
-
+import CoinList from "./CoinList";
 
 class App extends React.Component {
   render() {
     return (
       <Router>
         <div className="App">
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/coins">Coins</Link></li>
-          </ul>
-
+          <Route exact path="/" component={CoinList} />
           <Route path="/coins/:symbol" component={CoinAdd} />
           <Route exact path="/coins" component={CoinSearch} />
         </div>

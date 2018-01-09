@@ -1,0 +1,75 @@
+.CoinListItem {
+  height: 100px;
+  display: flex;
+
+  border: solid 1px #e2e2e2;
+  border-radius: 4px;
+
+  margin-bottom: 16px;
+
+  text-decoration: none;
+  text-align: left;
+  color: black;
+}
+
+.CoinListItem--image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 8px;
+}
+
+.CoinListItem--image img {
+  width: 50px;
+}
+
+.CoinListItem--coin {
+  text-align: left;
+}
+
+.CoinListItem--holdings {
+  text-align: right;
+}
+
+.CoinListItem--image,
+.CoinListItem--coin,
+.CoinListItem--holdings,
+.CoinListItem--change {
+  margin-right: 8px;
+}
+
+.CoinListItem--holdings {
+  flex-grow: 2;
+}
+
+.CoinListItem--title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 24px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.CoinListItem--value {
+  font-size: 14px;
+  margin-top: 12px;
+  color: #A2A2A2;
+}
+
+.CoinListItem--change {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  margin-left: 16px;
+  text-align: right;
+}
+
+.CoinListItem--percent-up {
+  color: green;
+}
+
+.CoinListItem--percent-down {
+  color: red;
+}

@@ -8,6 +8,8 @@
         "react/forbid-prop-types": "off",
         "react/jsx-filename-extension": "off",
         "space-before-function-paren": "off",
+        "function-paren-newline": "off",
+        "comma-dangle": "off",
         "quotes": "off",
         "no-confusing-arrow": "off",
         "arrow-body-style": "off"
