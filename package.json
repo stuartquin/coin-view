@@ -5,6 +5,7 @@
   "dependencies": {
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",

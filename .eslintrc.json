@@ -5,6 +5,7 @@
     },
     "rules": {
         "jsx-a11y/anchor-is-valid": "off",
+        "react/forbid-prop-types": "off",
         "react/jsx-filename-extension": "off",
         "space-before-function-paren": "off",
         "quotes": "off",

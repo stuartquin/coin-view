@@ -1,5 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { getCoins } from "../services/shapeshift";
+import Listing from "./Listing";
+
+import "./CoinSearch.css";
 
 const getDisplayCoins = (coins, filter) =>
   coins.filter((coin) => {
@@ -15,6 +20,7 @@ class CoinSearch extends React.Component {
 
     this.state = {
       coins: [],
+      selectedSymbols: ["BTC"],
       filter: "",
     };
   }
@@ -25,6 +31,17 @@ class CoinSearch extends React.Component {
     });
   }
 
+  handleSelect (coin) {
+    const { selectedSymbols } = this.state;
+    const selected = selectedSymbols.indexOf(coin.symbol) > -1 ?
+      selectedSymbols.filter(symbol => symbol !== coin.symbol) :
+      selectedSymbols.concat([coin.symbol]);
+
+    this.setState({
+      selectedSymbols: selected,
+    });
+  }
+
   handleFilterChange (evt) {
     this.setState({
       filter: evt.target.value,
@@ -32,27 +49,34 @@ class CoinSearch extends React.Component {
   }
 
   render() {
-    const { coins, filter } = this.state;
+    const { coins, filter, selectedSymbols } = this.state;
     const displayCoins = getDisplayCoins(coins, filter);
 
     return (
-      <div className="Coins">
-        <div className="CoinFilter">
+      <div className="CoinSearch container">
+        <div className="CoinSearch--Filter">
           <input
             type="search"
+            className="input"
             value={filter}
             onChange={evt => this.handleFilterChange(evt)}
             placeholder="Search"
           />
         </div>
 
-        {displayCoins.map(coin => (
-          <div className="CoinCard--title">{coin.name}</div>
-        ))}
+        <div className="CoinSearch--Listings">
+          {displayCoins.map(coin => (
+            <Link key={coin.symbol} to={`/coins/${coin.symbol}`}>
+              <Listing
+                isSelected={selectedSymbols.indexOf(coin.symbol) > -1}
+                coin={coin}
+              />
+            </Link>
+          ))}
+        </div>
       </div>
     );
   }
 }
-
 
 export default CoinSearch;

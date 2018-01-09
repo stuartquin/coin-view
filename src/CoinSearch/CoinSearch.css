@@ -1,0 +1,12 @@
+.CoinSearch {
+}
+
+.CoinSearch--Filter {
+  margin-bottom: 16px;
+}
+
+.CoinSearch--Listings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}

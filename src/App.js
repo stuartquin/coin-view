@@ -7,6 +7,7 @@ import {
 
 import "./App.css";
 import CoinSearch from "./CoinSearch";
+import CoinAdd from "./CoinAdd";
 
 
 class App extends React.Component {
@@ -19,7 +20,8 @@ class App extends React.Component {
             <li><Link to="/coins">Coins</Link></li>
           </ul>
 
-          <Route path="/coins" component={CoinSearch} />
+          <Route path="/coins/:symbol" component={CoinAdd} />
+          <Route exact path="/coins" component={CoinSearch} />
         </div>
       </Router>
     );
