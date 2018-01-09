@@ -9,6 +9,7 @@
         "react/jsx-filename-extension": "off",
         "space-before-function-paren": "off",
         "quotes": "off",
+        "no-confusing-arrow": "off",
         "arrow-body-style": "off"
     }
 }
