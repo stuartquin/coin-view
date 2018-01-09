@@ -2,6 +2,7 @@
   "name": "coin-view",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://stuartquin.com/coin-view",
   "dependencies": {
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
