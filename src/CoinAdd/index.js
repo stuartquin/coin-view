@@ -107,10 +107,9 @@ class CoinAdd extends React.Component {
           ) : (
             <Link to="/" className="button">Cancel</Link>
           )}
-        </div>
-
-        <div className="fixedBottom">
-          <ShapeShiftButton symbol={symbol} />
+          <div className="fixedBottom">
+            <ShapeShiftButton symbol={symbol} />
+          </div>
         </div>
       </div>
     );

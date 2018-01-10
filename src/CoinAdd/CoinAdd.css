@@ -6,3 +6,7 @@
 .CoinAdd .button {
   margin-top: 16px;
 }
+
+.input:focus ~ .fixedBottom {
+  display: none;
+}

@@ -17,12 +17,12 @@
 }
 
 .CoinListItem--image img {
-  width: 50px;
+  width: 48px;
 }
 
 .CoinListItem--coin {
   text-align: left;
-  width: 136px;
+  width: 128px;
 }
 
 .CoinListItem--holdings {
