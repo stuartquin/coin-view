@@ -39,13 +39,16 @@ const getOpeningPrice = (coin) => {
 
 
 const getSummary = (coins) => {
-  const total = coins.reduce(
+  const summaryCoins = coins.filter(coin => coin.amount);
+  const total = summaryCoins.reduce(
     (acc, coin) => acc + (parseFloat(coin.price_usd) * coin.amount), 0
   );
-  const opening = coins.reduce(
+  const opening = summaryCoins.reduce(
     (acc, coin) => acc + (getOpeningPrice(coin) * coin.amount), 0
   );
-  const percentage = (((total - opening) / opening) * 100.0).toFixed(2);
+  const percentage = summaryCoins.length ?
+    (((total - opening) / opening) * 100.0).toFixed(2) :
+    0;
 
   return {
     total,

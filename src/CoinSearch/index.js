@@ -1,5 +1,6 @@
 import React from "react";
 
+import Spinner from "../Spinner";
 import { getPrices } from "../services/shapeshift";
 import CoinListItem from "../CoinList/CoinListItem";
 
@@ -55,11 +56,13 @@ class CoinSearch extends React.Component {
           />
         </div>
 
-        <div className="CoinSearch--Listings">
-          {displayCoins.map(coin => (
-            <CoinListItem key={coin.symbol} coin={coin} />
-          ))}
-        </div>
+        { displayCoins.length ? (
+          <div className="CoinSearch--Listings">
+            {displayCoins.map(coin => (
+              <CoinListItem key={coin.symbol} coin={coin} />
+            ))}
+          </div>
+        ) : <Spinner />}
       </div>
     );
   }

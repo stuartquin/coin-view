@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import Spinner from "../Spinner";
 import { getPrices } from "../services/shapeshift";
 import { asCurrency } from "../services/currency";
 import {
@@ -58,7 +59,7 @@ class CoinAdd extends React.Component {
     const placeholder = `Total ${symbol} to add`;
 
     if (!coin) {
-      return <h3>Loading...</h3>;
+      return <Spinner />;
     }
 
     const diff = parseFloat(coin.price_usd) - getOpeningPrice(coin);

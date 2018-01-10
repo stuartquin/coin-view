@@ -11,7 +11,7 @@ const CoinList = ({ coins }) => {
       {coins.map(coin => (
         <CoinListItem key={coin.symbol} coin={coin} />
       ))}
-      <Link to="/coins" className="circle-button">+</Link>
+      <Link to="/coins" className="circle-button" />
     </div>
   );
 };

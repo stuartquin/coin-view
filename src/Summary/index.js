@@ -2,6 +2,7 @@ import React from "react";
 
 import "./Summary.css";
 import CoinList from "../CoinList";
+import Spinner from "../Spinner";
 import { getCoins, getSummary } from "../services/coins";
 import { getPrices } from "../services/shapeshift";
 import { asCurrency } from "../services/currency";
@@ -52,7 +53,11 @@ class Summary extends React.Component {
       "Summary--percent-up" :
       "Summary--percent-down";
 
-    if (!loading && !total) {
+    if (loading) {
+      return <Spinner />;
+    }
+
+    if (!loading && coins.length === 0) {
       this.props.history.push("/coins");
     }
 
