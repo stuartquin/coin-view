@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import { getPrices } from "../services/shapeshift";
 import CoinListItem from "../CoinList/CoinListItem";

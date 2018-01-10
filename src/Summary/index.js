@@ -58,20 +58,14 @@ class Summary extends React.Component {
 
     return (
       <div className="Summary">
-        {total ? (
-          <div className="Summary--Total">
-            <div className="Summary--Total-amount">
-              {asCurrency(total)}
-            </div>
-            <div className={className}>
-              {asCurrency(diff)} ({percentage}%)
-            </div>
+        <div className="Summary--Total">
+          <div className="Summary--Total-amount">
+            {asCurrency(total)}
           </div>
-        ) : (
-          <div className="Summary--Empty">
-            Use the button below to add to your portfolio
+          <div className={className}>
+            {asCurrency(diff)} ({percentage}%)
           </div>
-        )}
+        </div>
         <CoinList coins={this.state.coins} />
       </div>
     );

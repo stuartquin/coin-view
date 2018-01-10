@@ -24,7 +24,7 @@
 
 .CoinListItem--coin {
   text-align: left;
-  max-width: 140px;
+  width: 140px;
 }
 
 .CoinListItem--holdings {
@@ -66,6 +66,7 @@
   font-weight: bold;
   margin-left: 16px;
   text-align: right;
+  width: 64px;
 }
 
 .CoinListItem--percent-up {
