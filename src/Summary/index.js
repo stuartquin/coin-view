@@ -7,7 +7,7 @@ import { getCoins, getSummary } from "../services/coins";
 import { getPrices } from "../services/shapeshift";
 import { asCurrency } from "../services/currency";
 
-const FETCH_WAIT = 1 * 60 * 1000;
+const FETCH_WAIT = 3 * 60 * 1000;
 
 class Summary extends React.Component {
   constructor (props) {

@@ -1,0 +1,11 @@
+.ShapeShiftButton {
+  font-size: 12px;
+  width: 100%;
+  background-color: #4C6B8F;
+  height: 48px;
+  color: white;
+  background-image: url(https://shapeshift.io/legacy/images/lens_icon.png);
+  background-position: 16px center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

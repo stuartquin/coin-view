@@ -93,7 +93,6 @@ body {
   position: fixed;
   bottom: 16px;
   right: 16px;
-  box-shadow: 1px 1px 4px #3E3F56;
 
   background-color: #6EC47F;
   color: #383849;
@@ -111,4 +110,11 @@ body {
 
 .cancel {
   background-color: #C43432;
+}
+
+.fixedBottom {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 }

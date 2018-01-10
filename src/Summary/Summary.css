@@ -3,7 +3,7 @@
 
 .Summary--Total {
   background-color: #2A2B3E;
-  min-height: 200px;
+  min-height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import Spinner from "../Spinner";
+import ShapeShiftButton from "../ShapeShiftButton";
 import { getPrices } from "../services/shapeshift";
 import { asCurrency } from "../services/currency";
 import {
   addCoin, getCoins, getOpeningPrice, deleteCoin
 } from "../services/coins";
 import "./CoinAdd.css";
+
 
 class CoinAdd extends React.Component {
   constructor (props) {
@@ -26,11 +28,12 @@ class CoinAdd extends React.Component {
 
     getPrices().then((res) => {
       const coin = res.find(r => r.symbol === symbol);
-      const holding = coins.find(r => r.symbol === symbol) || {};
+      const holding = coins.find(r => r.symbol === symbol);
 
       this.setState({
         coin,
-        amount: holding ? holding.amount : ""
+        amount: holding ? holding.amount : "",
+        isHolding: Boolean(holding)
       });
     });
   }
@@ -55,7 +58,7 @@ class CoinAdd extends React.Component {
 
   render () {
     const { symbol } = this.props.match.params;
-    const { amount, coin } = this.state;
+    const { amount, coin, isHolding } = this.state;
     const placeholder = `Total ${symbol} to add`;
 
     if (!coin) {
@@ -69,9 +72,9 @@ class CoinAdd extends React.Component {
 
     return (
       <div>
-        <h2 className="title">{symbol}</h2>
         <div className="Summary">
           <div className="Summary--Total">
+            <h2 className="title">{symbol}</h2>
             <div className="Summary--Total-amount">
               {asCurrency(coin.price_usd)}
             </div>
@@ -94,13 +97,19 @@ class CoinAdd extends React.Component {
           >
             Save
           </button>
-          <button
-            onClick={() => this.handleDelete()}
-            className="button button--cancel"
-          >
-            Delete
-          </button>
+          {isHolding ? (
+            <button
+              onClick={() => this.handleDelete()}
+              className="button button--cancel"
+            >
+              Delete
+            </button>
+          ) : null }
           <Link to="/" className="button">Cancel</Link>
+        </div>
+
+        <div className="fixedBottom">
+          <ShapeShiftButton symbol={symbol} />
         </div>
       </div>
     );
