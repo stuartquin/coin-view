@@ -22,7 +22,7 @@
 
 .CoinListItem--coin {
   text-align: left;
-  width: 140px;
+  width: 136px;
 }
 
 .CoinListItem--holdings {
@@ -31,8 +31,7 @@
 
 .CoinListItem--image,
 .CoinListItem--coin,
-.CoinListItem--holdings,
-.CoinListItem--change {
+.CoinListItem--holdings {
   margin-right: 8px;
 }
 
@@ -62,7 +61,6 @@
   align-items: center;
   font-size: 16px;
   font-weight: bold;
-  margin-left: 16px;
   text-align: right;
   width: 64px;
 }
