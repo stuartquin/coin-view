@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import "./CoinListItem.css";
-import ShapeShiftButton from "../ShapeShiftButton";
 import { asCurrency } from "../services/currency";
 
 const getTotal = coin =>

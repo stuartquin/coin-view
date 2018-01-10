@@ -56,7 +56,7 @@ class CoinSearch extends React.Component {
           />
         </div>
 
-        { displayCoins.length ? (
+        { coins.length ? (
           <div className="CoinSearch--Listings">
             {displayCoins.map(coin => (
               <CoinListItem key={coin.symbol} coin={coin} />
