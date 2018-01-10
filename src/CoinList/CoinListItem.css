@@ -17,12 +17,13 @@
 }
 
 .CoinListItem--image img {
-  width: 48px;
+  width: 40px;
 }
 
 .CoinListItem--coin {
+  flex-grow: 2;
   text-align: left;
-  width: 128px;
+  min-width: 120px;
 }
 
 .CoinListItem--holdings {
@@ -53,16 +54,17 @@
   font-size: 14px;
   margin-top: 12px;
   color: #A2A2A2;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .CoinListItem--change {
-  flex-grow: 2;
   display: flex;
   align-items: center;
   font-size: 16px;
   font-weight: bold;
   text-align: right;
-  width: 64px;
+  width: 96px;
 }
 
 .CoinListItem--percent-up {
