@@ -104,8 +104,9 @@ class CoinAdd extends React.Component {
             >
               Delete
             </button>
-          ) : null }
-          <Link to="/" className="button">Cancel</Link>
+          ) : (
+            <Link to="/" className="button">Cancel</Link>
+          )}
         </div>
 
         <div className="fixedBottom">
