@@ -6,16 +6,24 @@ import { getCoins, getSummary } from "../services/coins";
 import { getPrices } from "../services/shapeshift";
 import { asCurrency } from "../services/currency";
 
+const FETCH_WAIT = 1 * 60 * 1000;
+
 class Summary extends React.Component {
   constructor (props) {
     super(props);
 
     this.state = {
       coins: [],
+      loading: true,
     };
   }
 
   componentDidMount () {
+    this.fetchPrices();
+    setInterval(() => this.fetchPrices(), FETCH_WAIT);
+  }
+
+  fetchPrices () {
     const coins = getCoins();
     const symbols = coins.map(coin => coin.symbol);
 
@@ -31,28 +39,39 @@ class Summary extends React.Component {
       });
 
       this.setState({
-        coins: selectedCoins
+        coins: selectedCoins,
+        loading: false,
       });
     });
   }
 
   render () {
-    const { coins } = this.state;
+    const { loading, coins } = this.state;
     const { total, diff, percentage } = getSummary(coins);
     const className = diff > 0 ?
       "Summary--percent-up" :
       "Summary--percent-down";
 
+    if (!loading && !total) {
+      this.props.history.push("/coins");
+    }
+
     return (
       <div className="Summary">
-        <div className="Summary--Total">
-          <div className="Summary--Total-amount">
-            {asCurrency(total)}
+        {total ? (
+          <div className="Summary--Total">
+            <div className="Summary--Total-amount">
+              {asCurrency(total)}
+            </div>
+            <div className={className}>
+              {asCurrency(diff)} ({percentage}%)
+            </div>
           </div>
-          <div className={className}>
-            {asCurrency(diff)} ({percentage}%)
+        ) : (
+          <div className="Summary--Empty">
+            Use the button below to add to your portfolio
           </div>
-        </div>
+        )}
         <CoinList coins={this.state.coins} />
       </div>
     );

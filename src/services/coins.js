@@ -11,7 +11,7 @@ const serializeCoin = (coin, amount) => {
   };
 };
 
-const deleteCoin = (coin, amount) => {
+const deleteCoin = (coin) => {
   const coins = getCoins();
   const updated = coins.filter(c => c.symbol !== coin.symbol);
 

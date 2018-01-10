@@ -45,7 +45,7 @@ class CoinSearch extends React.Component {
 
     return (
       <div className="CoinSearch container">
-        <h2 className="title">Add Coins</h2>
+        <h2 className="title">Add Coins to Portfolio</h2>
         <div className="CoinSearch--Filter">
           <input
             type="search"
