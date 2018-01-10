@@ -2,14 +2,13 @@
   height: 100px;
   display: flex;
 
-  border: solid 1px #e2e2e2;
-  border-radius: 4px;
-
   margin-bottom: 16px;
 
   text-decoration: none;
   text-align: left;
-  color: black;
+
+  color: #FCFCFC;
+  border-bottom: solid 1px #353649;
 }
 
 .CoinListItem--image {
@@ -25,6 +24,7 @@
 
 .CoinListItem--coin {
   text-align: left;
+  max-width: 140px;
 }
 
 .CoinListItem--holdings {
@@ -43,7 +43,7 @@
 }
 
 .CoinListItem--title {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   margin-top: 24px;
 
@@ -61,15 +61,16 @@
 .CoinListItem--change {
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: bold;
   margin-left: 16px;
   text-align: right;
 }
 
 .CoinListItem--percent-up {
-  color: green;
+  color: #58BB75;
 }
 
 .CoinListItem--percent-down {
-  color: red;
+  color: #C43432;
 }

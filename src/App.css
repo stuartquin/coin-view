@@ -1,7 +1,18 @@
-.App {
-  text-align: center;
+body {
+  background: #242538;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -55,4 +66,23 @@
 
 .button--success {
   background-color: lightgreen;
+}
+
+.circle-button {
+  text-decoration: none;
+  text-align: center;
+  line-height: 80px;
+  font-size: 48px;
+  font-weight: bold;
+
+  border-radius: 90px;
+  width: 80px;
+  height: 80px;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  box-shadow: 1px 1px 4px #2A2B3E;
+
+  background-color: #6EC47F;
+  color: #383849;
 }

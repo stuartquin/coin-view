@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import "./CoinListItem.css";
+import { asCurrency } from "../services/currency";
 
 const getTotal = coin =>
   (parseFloat(coin.price_usd) * parseFloat(coin.amount)).toFixed(3);
 
-const asCurrency = (value, currency = "USD") =>
-  `$${value}`;
 
 const getChange = (coin) => {
   const change = parseFloat(coin.percent_change_24h);
