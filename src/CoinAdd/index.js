@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { getCoins } from "../services/shapeshift";
-import { addCoin } from "../services/coins";
+import { getPrices } from "../services/shapeshift";
+import { asCurrency } from "../services/currency";
+import {
+  addCoin, getCoins, getOpeningPrice, deleteCoin
+} from "../services/coins";
 import "./CoinAdd.css";
 
 class CoinAdd extends React.Component {
@@ -18,10 +21,15 @@ class CoinAdd extends React.Component {
 
   componentDidMount () {
     const { symbol } = this.props.match.params;
+    const coins = getCoins();
 
-    getCoins().then((res) => {
+    getPrices().then((res) => {
+      const coin = res.find(r => r.symbol === symbol);
+      const holding = coins.find(r => r.symbol === symbol) || {};
+
       this.setState({
-        coin: Object.values(res).find(r => r.symbol === symbol)
+        coin,
+        amount: holding ? holding.amount : ""
       });
     });
   }
@@ -30,6 +38,11 @@ class CoinAdd extends React.Component {
     const { coin, amount } = this.state;
 
     addCoin(coin, amount);
+    this.props.history.push("/");
+  }
+
+  handleDelete () {
+    deleteCoin(this.state.coin);
     this.props.history.push("/");
   }
 
@@ -48,23 +61,46 @@ class CoinAdd extends React.Component {
       return <h3>Loading...</h3>;
     }
 
+    const diff = parseFloat(coin.price_usd) - getOpeningPrice(coin);
+    const className = diff > 0 ?
+      "Summary--percent-up" :
+      "Summary--percent-down";
+
     return (
-      <div className="CoinAdd container">
-        <h3>Update {symbol}</h3>
-        <input
-          className="input"
-          type="number"
-          value={amount}
-          onChange={evt => this.handleChange(evt)}
-          placeholder={placeholder}
-        />
-        <button
-          onClick={() => this.handleSave()}
-          className="button button--success"
-        >
-          Save
-        </button>
-        <Link to="/coins" className="button">Cancel</Link>
+      <div>
+        <h2 className="title">{symbol}</h2>
+        <div className="Summary">
+          <div className="Summary--Total">
+            <div className="Summary--Total-amount">
+              {asCurrency(coin.price_usd)}
+            </div>
+            <div className={className}>
+              {asCurrency(diff)} ({coin.percent_change_24h}%)
+            </div>
+          </div>
+        </div>
+        <div className="CoinAdd container">
+          <input
+            className="input"
+            type="number"
+            value={amount}
+            onChange={evt => this.handleChange(evt)}
+            placeholder={placeholder}
+          />
+          <button
+            onClick={() => this.handleSave()}
+            className="button button--success"
+          >
+            Save
+          </button>
+          <button
+            onClick={() => this.handleDelete()}
+            className="button button--cancel"
+          >
+            Delete
+          </button>
+          <Link to="/" className="button">Cancel</Link>
+        </div>
       </div>
     );
   }

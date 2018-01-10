@@ -11,7 +11,7 @@ const getTotal = coin =>
 
 const getChange = (coin) => {
   const change = parseFloat(coin.percent_change_24h);
-  const className = change > 0 ? "up" : "down"
+  const className = change > 0 ? "up" : "down";
 
   return (
     <div className={`CoinListItem--percent-${className}`}>
@@ -32,14 +32,16 @@ const CoinListItem = ({ coin }) => {
           {asCurrency(coin.price_usd)}
         </div>
       </div>
-      <div className="CoinListItem--holdings">
-        <div className="CoinListItem--title">
-          {asCurrency(getTotal(coin))}
+      {coin.amount ? (
+        <div className="CoinListItem--holdings">
+          <div className="CoinListItem--title">
+            {asCurrency(getTotal(coin))}
+          </div>
+          <div className="CoinListItem--value">
+            {`${coin.amount} ${coin.symbol}`}
+          </div>
         </div>
-        <div className="CoinListItem--value">
-          {`${coin.amount} ${coin.symbol}`}
-        </div>
-      </div>
+      ) : null}
       <div className="CoinListItem--change">
         {getChange(coin)}
       </div>

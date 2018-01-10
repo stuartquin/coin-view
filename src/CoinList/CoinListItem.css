@@ -59,6 +59,7 @@
 }
 
 .CoinListItem--change {
+  flex-grow: 2;
   display: flex;
   align-items: center;
   font-size: 16px;
@@ -69,8 +70,10 @@
 
 .CoinListItem--percent-up {
   color: #58BB75;
+  width: 100%;
 }
 
 .CoinListItem--percent-down {
   color: #C43432;
+  width: 100%;
 }

@@ -13,7 +13,7 @@ const Listing = (props) => {
   return (
     <div className={className}>
       <div className="CoinSearch--Listing--icon">
-        <img src={coin.imageSmall} alt={coin.symbol} />
+        <img src={coin.image} alt={coin.symbol} />
       </div>
       <div className="CoinSearch--Listing--title">
         {coin.name}

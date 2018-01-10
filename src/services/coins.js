@@ -11,6 +11,13 @@ const serializeCoin = (coin, amount) => {
   };
 };
 
+const deleteCoin = (coin, amount) => {
+  const coins = getCoins();
+  const updated = coins.filter(c => c.symbol !== coin.symbol);
+
+  localStorage.setItem("coins", JSON.stringify(updated));
+};
+
 const addCoin = (coin, amount) => {
   const serialized = serializeCoin(coin, amount);
   const coins = getCoins();
@@ -33,7 +40,7 @@ const getOpeningPrice = (coin) => {
 
 const getSummary = (coins) => {
   const total = coins.reduce(
-    (acc, coin) => acc + (coin.price_usd * coin.amount), 0
+    (acc, coin) => acc + (parseFloat(coin.price_usd) * coin.amount), 0
   );
   const opening = coins.reduce(
     (acc, coin) => acc + (getOpeningPrice(coin) * coin.amount), 0
@@ -48,4 +55,6 @@ const getSummary = (coins) => {
   };
 };
 
-export { addCoin, getCoins, getSummary };
+export {
+  addCoin, getCoins, getSummary, getOpeningPrice, deleteCoin
+};

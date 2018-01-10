@@ -1,18 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { getCoins } from "../services/shapeshift";
-import Listing from "./Listing";
+import { getPrices } from "../services/shapeshift";
+import CoinListItem from "../CoinList/CoinListItem";
 
 import "./CoinSearch.css";
 
-const getDisplayCoins = (coins, filter) =>
-  coins.filter((coin) => {
+const getDisplayCoins = (coins, filter) => {
+  const lowerFilter = filter.toLowerCase();
+
+  return coins.filter((coin) => {
     return (
-      coin.name.toLowerCase().indexOf(filter) > -1 ||
-      coin.symbol.toLowerCase().indexOf(filter) > -1
-    ) && coin.status === "available";
+      coin.name.toLowerCase().indexOf(lowerFilter) > -1 ||
+      coin.symbol.toLowerCase().indexOf(lowerFilter) > -1
+    );
   });
+};
 
 class CoinSearch extends React.Component {
   constructor (props) {
@@ -25,8 +28,8 @@ class CoinSearch extends React.Component {
   }
 
   componentDidMount() {
-    getCoins().then((coins) => {
-      this.setState({ coins: Object.values(coins) });
+    getPrices().then((coins) => {
+      this.setState({ coins });
     });
   }
 
@@ -42,6 +45,7 @@ class CoinSearch extends React.Component {
 
     return (
       <div className="CoinSearch container">
+        <h2 className="title">Add Coins</h2>
         <div className="CoinSearch--Filter">
           <input
             type="search"
@@ -54,9 +58,7 @@ class CoinSearch extends React.Component {
 
         <div className="CoinSearch--Listings">
           {displayCoins.map(coin => (
-            <Link key={coin.symbol} to={`/coins/${coin.symbol}`}>
-              <Listing coin={coin} />
-            </Link>
+            <CoinListItem key={coin.symbol} coin={coin} />
           ))}
         </div>
       </div>
