@@ -3,6 +3,7 @@ const fs = require("fs");
 
 const priceUrl = "https://api.coinmarketcap.com/v1/ticker/?limit=200";
 const shapeShiftUrl = "https://shapeshift.io/getcoins";
+const currencyURL = "https://api.fixer.io/latest?base=USD";
 
 const getData = (url, cb) => {
   https.get(url, (res) => {
@@ -32,4 +33,10 @@ getData(priceUrl, (priceData) => {
     fs.writeFileSync("public/prices.json", JSON.stringify(output));
     console.log("Coin data saved");
   });
+});
+
+getData(currencyURL, (data) => {
+  console.log("Currency data fetched");
+  fs.writeFileSync("public/rates.json", JSON.stringify(data));
+  console.log("Currency data saved");
 });

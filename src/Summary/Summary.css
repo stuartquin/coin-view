@@ -11,26 +11,40 @@
 }
 
 .Summary--Total-amount {
-  font-size: 48px;
+  font-size: 12vw;
   font-weight: bold;
   color: #FCFCFC;
   margin-bottom: 8px;
-}
 
-.Summary--Empty {
-  font-size: 22px;
-  text-align: center;
-  color: #FCFCFC;
-
-  margin-top: 48px
+  display: flex;
 }
 
 .Summary--percent-up {
-  font-size: 24px;
+  font-size: 8vw;
   color: #58BB75;
 }
 
 .Summary--percent-down {
-  font-size: 24px;
+  font-size: 8vw;
   color: #C43432;
+}
+
+.Summary--currency {
+  margin-left: 8px;
+  font-size: 18px;
+
+  background: none;
+  border: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  color: #F2F2F2;
+}
+
+.Summary--currency:active {
+  background-color: #F2F2F2;
+  color: #2A2B3E;
+}
+
+:focus {
+  outline: 0;
 }

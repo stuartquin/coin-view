@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./Summary.css";
 import CoinList from "../CoinList";
 import Spinner from "../Spinner";
 import { getCoins, getSummary } from "../services/coins";
 import { getPrices } from "../services/shapeshift";
-import { asCurrency } from "../services/currency";
+import { asCurrency, setCurrency, getCurrency } from "../services/currency";
 
 const FETCH_WAIT = 3 * 60 * 1000;
 
@@ -16,12 +17,23 @@ class Summary extends React.Component {
     this.state = {
       coins: [],
       loading: true,
+      currency: getCurrency()
     };
   }
 
   componentDidMount () {
     this.fetchPrices();
     setInterval(() => this.fetchPrices(), FETCH_WAIT);
+  }
+
+  handleChangeCurrency (evt) {
+    const currency = evt.target.value;
+
+    this.setState({
+      currency
+    });
+
+    setCurrency(currency);
   }
 
   fetchPrices () {
@@ -66,6 +78,15 @@ class Summary extends React.Component {
         <div className="Summary--Total">
           <div className="Summary--Total-amount">
             {asCurrency(total)}
+            <select
+              className="Summary--currency"
+              value={this.state.currency}
+              onChange={evt => this.handleChangeCurrency(evt)}
+            >
+              <option value="USD">USD</option>
+              <option value="GBP">GBP</option>
+              <option value="EUR">EUR</option>
+            </select>
           </div>
           <div className={className}>
             {asCurrency(diff)} ({percentage}%)
@@ -76,5 +97,9 @@ class Summary extends React.Component {
     );
   }
 }
+
+Summary.propTypes = {
+  history: PropTypes.object.isRequired
+};
 
 export default Summary;
