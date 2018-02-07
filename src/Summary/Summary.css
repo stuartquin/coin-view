@@ -11,22 +11,12 @@
 }
 
 .Summary--Total-amount {
-  font-size: 12vw;
+  font-size: 48px;
   font-weight: bold;
   color: #FCFCFC;
   margin-bottom: 8px;
 
   display: flex;
-}
-
-.Summary--percent-up {
-  font-size: 8vw;
-  color: #58BB75;
-}
-
-.Summary--percent-down {
-  font-size: 8vw;
-  color: #C43432;
 }
 
 .Summary--currency {
@@ -43,6 +33,10 @@
 .Summary--currency:active {
   background-color: #F2F2F2;
   color: #2A2B3E;
+}
+
+.SummaryChange {
+  display: flex;
 }
 
 :focus {

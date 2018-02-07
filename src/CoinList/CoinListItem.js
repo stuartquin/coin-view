@@ -10,7 +10,7 @@ const getTotal = coin =>
 
 
 const getChange = (coin) => {
-  const change = parseFloat(coin.percent_change_24h);
+  const change = parseFloat(coin.percent_change_7d);
   const className = change > 0 ? "up" : "down";
 
   return (

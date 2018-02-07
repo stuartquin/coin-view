@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import "./Summary.css";
 import CoinList from "../CoinList";
 import Spinner from "../Spinner";
+import SummaryChange from "./SummaryChange";
 import { getCoins, getSummary } from "../services/coins";
 import { getPrices } from "../services/shapeshift";
 import { asCurrency, setCurrency, getCurrency } from "../services/currency";
@@ -60,10 +61,7 @@ class Summary extends React.Component {
 
   render () {
     const { loading, coins } = this.state;
-    const { total, diff, percentage } = getSummary(coins);
-    const className = diff > 0 ?
-      "Summary--percent-up" :
-      "Summary--percent-down";
+    const { total } = getSummary(coins, "24h");
 
     if (loading) {
       return <Spinner />;
@@ -88,8 +86,15 @@ class Summary extends React.Component {
               <option value="EUR">EUR</option>
             </select>
           </div>
-          <div className={className}>
-            {asCurrency(diff)} ({percentage}%)
+          <div className="SummaryChange">
+            <SummaryChange
+              summary={getSummary(coins, '24h')}
+              label="24 hours"
+            />
+            <SummaryChange
+              summary={getSummary(coins, '7d')}
+              label="7 days"
+            />
           </div>
         </div>
         <CoinList coins={this.state.coins} />

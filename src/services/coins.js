@@ -29,22 +29,23 @@ const addCoin = (coin, amount) => {
   localStorage.setItem("coins", JSON.stringify(updated));
 };
 
-const getOpeningPrice = (coin) => {
+const getOpeningPrice = (coin, period) => {
   const change = (
-    parseFloat(coin.price_usd) / (100 + parseFloat(coin.percent_change_24h))
+    parseFloat(coin.price_usd) / (100 + parseFloat(coin[period]))
   );
 
   return change * 100;
 };
 
 
-const getSummary = (coins) => {
+const getSummary = (coins, time) => {
+  const period = `percent_change_${time}`;
   const summaryCoins = coins.filter(coin => coin.amount);
   const total = summaryCoins.reduce(
     (acc, coin) => acc + (parseFloat(coin.price_usd) * coin.amount), 0
   );
   const opening = summaryCoins.reduce(
-    (acc, coin) => acc + (getOpeningPrice(coin) * coin.amount), 0
+    (acc, coin) => acc + (getOpeningPrice(coin, period) * coin.amount), 0
   );
   const percentage = summaryCoins.length ?
     (((total - opening) / opening) * 100.0).toFixed(2) :

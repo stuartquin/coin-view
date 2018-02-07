@@ -79,7 +79,7 @@ class CoinAdd extends React.Component {
               {asCurrency(coin.price_usd)}
             </div>
             <div className={className}>
-              {asCurrency(diff)} ({coin.percent_change_24h}%)
+              {asCurrency(diff)} ({coin.percent_change_7d}%)
             </div>
           </div>
         </div>
