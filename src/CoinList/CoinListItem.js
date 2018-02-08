@@ -9,45 +9,48 @@ const getTotal = coin =>
   (parseFloat(coin.price_usd) * parseFloat(coin.amount)).toFixed(3);
 
 
-const getChange = (coin) => {
-  const change = parseFloat(coin.percent_change_7d);
+const getChange = (coin, time, label) => {
+  const period = `percent_change_${time}`;
+  const change = parseFloat(coin[period]);
   const className = change > 0 ? "up" : "down";
 
   return (
     <div className={`CoinListItem--percent-${className}`}>
-      {change}%
+      <div className="CoinListItem--percent-label">{label}</div>
+      {change.toFixed(1)}%
     </div>
   );
 };
 
 const CoinListItem = ({ coin }) => {
   return (
-    <React.Fragment>
-      <Link to={`/coins/${coin.symbol}`} className="CoinListItem">
-        <div className="CoinListItem--image">
-          <img src={coin.image} alt={coin.symbol} />
+    <Link to={`/coins/${coin.symbol}`} className="CoinListItem">
+      <div className="CoinListItem--image">
+        <img src={coin.image} alt={coin.symbol} />
+      </div>
+      <div className="CoinListItem--coin">
+        <div className="CoinListItem--title">{coin.symbol}</div>
+        <div className="CoinListItem--value">
+          {asCurrency(coin.price_usd)}
         </div>
-        <div className="CoinListItem--coin">
-          <div className="CoinListItem--title">{coin.name}</div>
-          <div className="CoinListItem--value">
-            {asCurrency(coin.price_usd)}
-          </div>
-        </div>
+      </div>
+      <div className="CoinListItem--holdings">
         {coin.amount ? (
-          <div className="CoinListItem--holdings">
+          <React.Fragment>
             <div className="CoinListItem--title">
-              {asCurrency(getTotal(coin))}
+              {coin.amount}
             </div>
             <div className="CoinListItem--value">
-              {`${coin.amount} ${coin.symbol}`}
+              {asCurrency(getTotal(coin))}
             </div>
-          </div>
+          </React.Fragment>
         ) : null}
-        <div className="CoinListItem--change">
-          {getChange(coin)}
-        </div>
-      </Link>
-    </React.Fragment>
+      </div>
+      <div className="CoinListItem--change">
+        {getChange(coin, "24h", "day")}
+        {getChange(coin, "7d", "week")}
+      </div>
+    </Link>
   );
 };
 

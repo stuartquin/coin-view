@@ -4,10 +4,11 @@ import PropTypes from "prop-types";
 
 import Spinner from "../Spinner";
 import ShapeShiftButton from "../ShapeShiftButton";
+import SummaryChange from "../Summary/SummaryChange";
 import { getPrices } from "../services/shapeshift";
 import { asCurrency } from "../services/currency";
 import {
-  addCoin, getCoins, getOpeningPrice, deleteCoin
+  addCoin, getCoins, getOpeningPrice, deleteCoin, getSummary
 } from "../services/coins";
 import "./CoinAdd.css";
 
@@ -66,20 +67,31 @@ class CoinAdd extends React.Component {
     }
 
     const diff = parseFloat(coin.price_usd) - getOpeningPrice(coin);
-    const className = diff > 0 ?
-      "Summary--percent-up" :
-      "Summary--percent-down";
+    const displayCoin = {
+      ...coin,
+      amount: 1
+    };
 
     return (
-      <div>
+      <div className="CoinAddSummary">
         <div className="Summary">
           <div className="Summary--Total">
-            <h2 className="title">{symbol}</h2>
+            <h2 className="title">
+              <img src={displayCoin.image} alt={displayCoin.symbol} />
+              {symbol}
+            </h2>
             <div className="Summary--Total-amount">
               {asCurrency(coin.price_usd)}
             </div>
-            <div className={className}>
-              {asCurrency(diff)} ({coin.percent_change_7d}%)
+            <div className="SummaryChange">
+              <SummaryChange
+                summary={getSummary([displayCoin], '24h')}
+                label="day"
+              />
+              <SummaryChange
+                summary={getSummary([displayCoin], '7d')}
+                label="week"
+              />
             </div>
           </div>
         </div>

@@ -3,6 +3,22 @@
   margin-top: 16px;
 }
 
+.CoinAddSummary .Summary--Total {
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
+.Summary .title img {
+  width: 40px;
+  margin-right: 8px;
+}
+
+.Summary .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .CoinAdd .button {
   margin-top: 16px;
 }

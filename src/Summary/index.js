@@ -89,11 +89,11 @@ class Summary extends React.Component {
           <div className="SummaryChange">
             <SummaryChange
               summary={getSummary(coins, '24h')}
-              label="24 hours"
+              label="day"
             />
             <SummaryChange
               summary={getSummary(coins, '7d')}
-              label="7 days"
+              label="week"
             />
           </div>
         </div>

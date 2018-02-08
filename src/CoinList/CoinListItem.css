@@ -9,11 +9,11 @@
   border-bottom: solid 1px #353649;
 }
 
+
 .CoinListItem--image {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 8px;
 }
 
 .CoinListItem--image img {
@@ -23,11 +23,12 @@
 .CoinListItem--coin {
   flex-grow: 2;
   text-align: left;
-  min-width: 120px;
+  min-width: 80px;
 }
 
 .CoinListItem--holdings {
   text-align: right;
+  max-width: 80px;
 }
 
 .CoinListItem--image,
@@ -61,18 +62,45 @@
 .CoinListItem--change {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   font-size: 16px;
   font-weight: bold;
   text-align: right;
-  width: 96px;
+  width: 130px;
+}
+
+.CoinListItem--change .SummaryChange--percent-up,
+.CoinListItem--change .SummaryChange--percent-down {
+  font-size: 14px;
+  width: 55px;
+}
+
+.CoinListItem--percent-down,
+.CoinListItem--percent-up {
+  margin-left: 4px;
+  margin-right: 4px;
+  min-width: 40px;
+}
+
+.CoinListItem--percent-label {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 900;
+  color: #A2A2A2;
+  display: none;
+  margin-bottom: 8px;
+  margin-top: -8px;
+}
+
+.CoinListItem:first-child .CoinListItem--percent-label {
+  display: block;
 }
 
 .CoinListItem--percent-up {
   color: #58BB75;
-  width: 100%;
 }
 
 .CoinListItem--percent-down {
   color: #C43432;
-  width: 100%;
 }

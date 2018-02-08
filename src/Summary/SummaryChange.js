@@ -12,9 +12,10 @@ const SummaryChange = ({ summary, label }) => {
 
   return (
     <div className={className}>
-      <div>{asCurrency(diff)}</div>
-      <div>({percentage}%)</div>
       <div className="SummaryChange--period">{label}</div>
+      <div>
+        {asCurrency(diff)} ({percentage}%)
+      </div>
     </div>
   );
 };
