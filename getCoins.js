@@ -13,7 +13,17 @@ const getData = (url, cb) => {
       body += data;
     });
     res.on("end", () => {
-      cb(JSON.parse(body));
+      if (res.statusCode < 400) {
+        cb(JSON.parse(body));
+      } else {
+        console.error(res.statusCode, url);
+        cb();
+      }
+    });
+
+    res.on("error", () => {
+      console.error('Error fetching from', url);
+      cb();
     });
   });
 };
@@ -37,6 +47,6 @@ getData(priceUrl, (priceData) => {
 
 getData(currencyURL, (data) => {
   console.log("Currency data fetched");
-  fs.writeFileSync("public/rates.json", JSON.stringify(data));
+  fs.writeFileSync("public/rates.json", JSON.stringify(data || {}));
   console.log("Currency data saved");
 });

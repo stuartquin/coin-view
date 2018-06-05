@@ -24,7 +24,7 @@ const setCurrency = (currency) => {
 
 const asCurrency = (value) => {
   const symbol = SYMBOLS[currentCurrency] || "$";
-  const rate = rates[currentCurrency] || 1;
+  const rate = rates && rates[currentCurrency] ? rates[currentCurrency] : 1;
   const val = parseFloat(`${value}`) * rate;
 
   return `${symbol}${val.toFixed(2)}`;
