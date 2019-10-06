@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "eslint": "^4.15.0",
+    "eslint": "^4.18.2",
     "eslint-config-airbnb": "^16.1.0",
     "netlify-cli": "^1.2.2",
     "prop-types": "^15.6.0",
