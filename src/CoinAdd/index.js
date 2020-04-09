@@ -8,7 +8,7 @@ import SummaryChange from "../Summary/SummaryChange";
 import { getPrices } from "../services/shapeshift";
 import { asCurrency } from "../services/currency";
 import {
-  addCoin, getCoins, getOpeningPrice, deleteCoin, getSummary
+  addCoin, getCoins, deleteCoin, getSummary
 } from "../services/coins";
 import "./CoinAdd.css";
 
@@ -66,7 +66,6 @@ class CoinAdd extends React.Component {
       return <Spinner />;
     }
 
-    const diff = parseFloat(coin.price_usd) - getOpeningPrice(coin);
     const displayCoin = {
       ...coin,
       amount: 1

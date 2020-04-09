@@ -12,6 +12,7 @@
         "comma-dangle": "off",
         "quotes": "off",
         "no-confusing-arrow": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "arrow-parens": "off"
     }
 }

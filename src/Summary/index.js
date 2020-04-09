@@ -12,7 +12,7 @@ import { asCurrency, setCurrency, getCurrency } from "../services/currency";
 const FETCH_WAIT = 3 * 60 * 1000;
 
 class Summary extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -22,12 +22,12 @@ class Summary extends React.Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.fetchPrices();
     setInterval(() => this.fetchPrices(), FETCH_WAIT);
   }
 
-  handleChangeCurrency (evt) {
+  handleChangeCurrency(evt) {
     const currency = evt.target.value;
 
     this.setState({
@@ -37,29 +37,28 @@ class Summary extends React.Component {
     setCurrency(currency);
   }
 
-  fetchPrices () {
+  fetchPrices() {
     const coins = getCoins();
     const symbols = coins.map(coin => coin.symbol);
 
-    getPrices().then((res) => {
-      const selectedCoins = res.filter(
-        coin => symbols.indexOf(coin.symbol) > -1
-      ).map((coin) => {
-        return {
-          ...coin,
-          amount: coins[symbols.indexOf(coin.symbol)].amount,
-          image: coins[symbols.indexOf(coin.symbol)].image,
-        };
-      });
+    getPrices().then(res => {
+      const selectedCoins = res
+        .filter(coin => symbols.indexOf(coin.symbol) > -1)
+        .map(coin => {
+          return {
+            ...coin,
+            amount: coins[symbols.indexOf(coin.symbol)].amount
+          };
+        });
 
       this.setState({
         coins: selectedCoins,
-        loading: false,
+        loading: false
       });
     });
   }
 
-  render () {
+  render() {
     const { loading, coins } = this.state;
     const { total } = getSummary(coins, "24h");
 
@@ -87,14 +86,8 @@ class Summary extends React.Component {
             </select>
           </div>
           <div className="SummaryChange">
-            <SummaryChange
-              summary={getSummary(coins, '24h')}
-              label="day"
-            />
-            <SummaryChange
-              summary={getSummary(coins, '7d')}
-              label="week"
-            />
+            <SummaryChange summary={getSummary(coins, "24h")} label="day" />
+            <SummaryChange summary={getSummary(coins, "7d")} label="week" />
           </div>
         </div>
         <CoinList coins={this.state.coins} />

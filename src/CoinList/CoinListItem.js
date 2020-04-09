@@ -6,8 +6,7 @@ import "./CoinListItem.css";
 import { asCurrency } from "../services/currency";
 
 const getTotal = coin =>
-  (parseFloat(coin.price_usd) * parseFloat(coin.amount)).toFixed(3);
-
+  (parseFloat(coin.price) * parseFloat(coin.amount)).toFixed(3);
 
 const getChange = (coin, time, label) => {
   const period = `percent_change_${time}`;
@@ -30,16 +29,12 @@ const CoinListItem = ({ coin }) => {
       </div>
       <div className="CoinListItem--coin">
         <div className="CoinListItem--title">{coin.symbol}</div>
-        <div className="CoinListItem--value">
-          {asCurrency(coin.price_usd)}
-        </div>
+        <div className="CoinListItem--value">{asCurrency(coin.price)}</div>
       </div>
       <div className="CoinListItem--holdings">
         {coin.amount ? (
           <React.Fragment>
-            <div className="CoinListItem--title">
-              {coin.amount}
-            </div>
+            <div className="CoinListItem--title">{coin.amount}</div>
             <div className="CoinListItem--value">
               {asCurrency(getTotal(coin))}
             </div>
@@ -55,7 +50,7 @@ const CoinListItem = ({ coin }) => {
 };
 
 CoinListItem.propTypes = {
-  coin: PropTypes.object.isRequired,
+  coin: PropTypes.object.isRequired
 };
 
 export default CoinListItem;

@@ -31,7 +31,7 @@ const addCoin = (coin, amount) => {
 
 const getOpeningPrice = (coin, period) => {
   const change = (
-    parseFloat(coin.price_usd) / (100 + parseFloat(coin[period]))
+    parseFloat(coin.price) / (100 + parseFloat(coin[period]))
   );
 
   return change * 100;
@@ -42,7 +42,7 @@ const getSummary = (coins, time) => {
   const period = `percent_change_${time}`;
   const summaryCoins = coins.filter(coin => coin.amount);
   const total = summaryCoins.reduce(
-    (acc, coin) => acc + (parseFloat(coin.price_usd) * coin.amount), 0
+    (acc, coin) => acc + (parseFloat(coin.price) * coin.amount), 0
   );
   const opening = summaryCoins.reduce(
     (acc, coin) => acc + (getOpeningPrice(coin, period) * coin.amount), 0
@@ -60,5 +60,5 @@ const getSummary = (coins, time) => {
 };
 
 export {
-  addCoin, getCoins, getSummary, getOpeningPrice, deleteCoin
+  addCoin, getCoins, getSummary, deleteCoin
 };
